@@ -22,3 +22,18 @@ WHERE inter_dom = 'Inter'
 GROUP BY stay
 ORDER BY stay DESC;
 
+--Assign numbers to each row
+SELECT *,
+	ROW_NUMBER() OVER() AS Row_N
+FROM Summer_Medals
+ORDER BY Row_N ASC;
+
+--Assign numbers to each year 
+SELECT Year,
+	ROW_NUMBER() OVER() AS Row_N
+FROM (
+	SELECT DISTINCT year
+	FROM Summer_Medals
+	ORDER BY Year ASC
+) AS Years 
+ORDER BY Year ASC;
